@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+Local spring modifications.  This file is never altered by WaveMaker software,
+and is an ideal location for end-users to put any code they need.
+-->
+<beans xmlns="http://www.springframework.org/schema/beans"
+		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+   <bean id="springSessionRepositoryFilter" class="org.springframework.session.web.http.SessionRepositoryFilter">
+   		<constructor-arg ref="sessionRepository"/>
+	</bean>
+
+	<bean id="sessionRepository" class="org.springframework.session.jdbc.JdbcOperationsSessionRepository">
+   		<constructor-arg ref="SessionDBDataSource"/>
+		<constructor-arg ref="SessionDBTransactionManager"/>
+		<property name="conversionService">
+			<bean class="AppGenericConversionService"/>
+		</property>
+   	</bean>
+
+
+</beans>
